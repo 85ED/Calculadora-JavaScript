@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora JavaScript</title>
+<!-- Adicionando Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<!-- Adicionando CSS ajuste de posição -->
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<div class="container tit"> 
+
+<h2>Calculadora JavaScript</h2>
+
+</div>
+
+<body>
+
+  <div class="container calc"> 
+      
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="valor1">Valor 1:</label>
+          <input type="number" class="form-control" id="valor1">
+        </div>
+        <div class="form-group">
+          <label for="valor2">Valor 2:</label>
+          <input type="number" class="form-control" id="valor2">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <button class="btn btn-primary mr-2" onclick="calcular('soma')">Somar</button>
+        <button class="btn btn-primary mr-2" onclick="calcular('subtracao')">Subtrair</button>
+        <button class="btn btn-primary mr-2" onclick="calcular('divisao')">Dividir</button>
+        <button class="btn btn-primary" onclick="calcular('multiplicacao')">Multiplicar</button>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <p id="resultado"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Adicionando Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    function calcular(operacao) {
+      var valor1 = document.getElementById("valor1").value.trim();
+      var valor2 = document.getElementById("valor2").value.trim();
+
+      if (valor1 === '' || valor2 === '') {
+        document.getElementById("resultado").innerText = "Dados em branco, favor digitar algo!";
+        return;
+      }
+
+      valor1 = parseFloat(valor1);
+      valor2 = parseFloat(valor2);
+
+      if (isNaN(valor1) || isNaN(valor2)) {
+        document.getElementById("resultado").innerText = "Por favor, insira números válidos!";
+        return;
+      }
+
+      var resultado;
+
+      switch (operacao) {
+        case 'soma':
+          resultado = valor1 + valor2;
+          break;
+        case 'subtracao':
+          resultado = valor1 - valor2;
+          break;
+        case 'divisao':
+          if (valor2 === 0) {
+            resultado = "Não há divisão por zero";
+          } else {
+            resultado = valor1 / valor2;
+          }
+          break;
+        case 'multiplicacao':
+          resultado = valor1 * valor2;
+          break;
+        default:
+          resultado = "Operação inválida";
+      }
+      document.getElementById("resultado").innerText = "Resultado: " + resultado;
+    }
+  </script>
+  
+  </div>
+</body>
+</html>
